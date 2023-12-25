@@ -1,11 +1,18 @@
+# FROM python:3
+# WORKDIR /app
+# COPY . /app
+# RUN pip install -r requirements.txt
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+
+
 FROM python:3
+RUN pip install django==3.2
 WORKDIR /app
-COPY . /app
-RUN pip install -r requirements.txt
+COPY . .
+RUN python manage.py migrate
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-
+CMD ["python","manage.py","runserver","0.0.0.0:8000"]
 
 
 
